@@ -32,7 +32,6 @@
 #define __POSITION_H
 
 #include "list_search.h"
-#include <stdint.h>
 
 typedef struct {
     lst_search_idx_decl(key, name);
@@ -53,8 +52,8 @@ typedef struct {
 extern int32_t pos_read(const pos_t *pos, const void *_base, void *data, uint32_t length);
 extern int32_t pos_write(const pos_t *pos, void *_base, const void *data, uint32_t length);
 
-static inline const pos_t *pos_search(pos_t *layout, uint32_t key) { return lst_search_id(key, layout, pos_t); }
-static inline const pos_t *pos_search_by_name(pos_t *layout, const char *name) {
+static inline const pos_t *pos_search(const pos_t *layout, uint32_t key) { return lst_search_id(key, layout, pos_t); }
+static inline const pos_t *pos_search_by_name(const pos_t *layout, const char *name) {
     return lst_search_st(name, layout, pos_t);
 }
 

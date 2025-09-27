@@ -29,16 +29,17 @@
  */
 
 #include "list_search.h"
-#include <stddef.h>
 #include <string.h>
 
 typedef struct {
     lst_search_idx_decl(id, st);
 } index_t;
 
-static inline void *lst_idx_of(void *lst, __off_t itmsz, __off_t idx) { return (uint8_t *)lst + itmsz * idx; }
+static inline const void *lst_idx_of(const void *lst, uint32_t itmsz, uint32_t idx) {
+    return (uint8_t *)lst + itmsz * idx;
+}
 
-void *__lst_search(bool by_id, const void *idx, void *lst, __off_t itmsz) {
+const void *__lst_search(bool by_id, const void *idx, const void *lst, uint32_t itmsz) {
     uint32_t    id = 0;
     const char *st = NULL;
 
@@ -46,7 +47,7 @@ void *__lst_search(bool by_id, const void *idx, void *lst, __off_t itmsz) {
     else st = (const char *)idx;
 
     for (int32_t i = 0;; i++) {
-        index_t *idxp = (index_t *)lst_idx_of(lst, itmsz, i);
+        const index_t *idxp = (const index_t *)lst_idx_of(lst, itmsz, i);
         if (idxp->id == LST_SEARCH_ID_END) break;
 
         if (by_id) {

@@ -30,7 +30,6 @@
 
 #include "position.h"
 #include <errno.h>
-#include <stdbool.h>
 #include <string.h>
 
 static inline uint32_t MaskShift(uint32_t mask) { return __builtin_ffs(mask) - 1; }

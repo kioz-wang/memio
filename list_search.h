@@ -46,12 +46,12 @@
 #define LST_SEARCH_ID_END UINT32_MAX
 #endif
 
-extern void *__lst_search(bool by_id, const void *idx, void *lst, __off_t itmsz);
+extern const void *__lst_search(bool by_id, const void *idx, const void *lst, uint32_t itmsz);
 
-static inline void *__lst_search_id(uint32_t id, void *lst, __off_t itmsz) {
+static inline const void *__lst_search_id(uint32_t id, const void *lst, uint32_t itmsz) {
     return __lst_search(true, (const void *)&id, lst, itmsz);
 }
-static inline void *__lst_search_st(const char *st, void *lst, __off_t itmsz) {
+static inline const void *__lst_search_st(const char *st, const void *lst, uint32_t itmsz) {
     return __lst_search(false, (const void *)st, lst, itmsz);
 }
 
