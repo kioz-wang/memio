@@ -36,7 +36,7 @@
 
 #define lst_search_idx_decl(id, st)                                                                                    \
     union {                                                                                                            \
-        struct __attribute__((packed)) {                                                                               \
+        struct {                                                                                                       \
             uint32_t    id; /* 便于索引的编号 */                                                                       \
             const char *st; /* 便于阅读的名称（可以不使用；也可用于索引） */                                           \
         };                                                                                                             \
